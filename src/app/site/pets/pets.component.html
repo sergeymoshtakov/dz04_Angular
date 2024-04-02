@@ -1,0 +1,21 @@
+<div id="app">
+    @for(pet of petsData; track $index){
+        <div class="animal">
+            <img class="pet-photo" src="{{pet.photo}}">
+            <h2 class="pet-name">{{pet.name}} <span class="species">({{pet.species}})</span></h2>
+            @if(pet.birthYear == 2024){
+                <p><strong>Lower than year</strong></p>
+            }@else {
+                <p><strong>Age: {{2024 - pet.birthYear}} </strong></p>
+            }
+            @if(pet.favFoods){
+                <h4>Favorite Foods</h4>
+                <ul class="foods-list">
+                    @for(food of pet.favFoods; track $index){
+                        <li>{{food}}</li>
+                    }
+                </ul>
+            }
+        </div>
+    }
+</div>
