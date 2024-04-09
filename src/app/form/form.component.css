@@ -1,0 +1,8 @@
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+.has-error{
+    color: red;
+    background-color: rgb(255, 197, 197);
+}

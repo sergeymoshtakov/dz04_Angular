@@ -1,0 +1,73 @@
+<div class="container">
+    <form (ngSubmit)="submit(form)" #form="ngForm">
+      <div class="form-group"
+      [ngClass]="{'has-error':email.invalid && email.touched}">
+        <label>Email</label>
+        <input 
+        type="text" 
+        class="form-control"
+        ngModel
+        name="email"
+        required
+        email
+        #email="ngModel">
+        <p *ngIf="email.invalid && email.touched">Введите корректный email</p>
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input 
+        type="password" 
+        class="form-control"
+        ngModel
+        name="pass"
+        #pass="ngModel"
+        pattern="\w{4,20}"
+        required
+        >
+      </div>
+      <div class="form-group">
+        <label for="confirmPass">confirmPass</label>
+        <input 
+            type="text"
+            id="confirmPass"
+            class="form-control"
+            ngModel
+            #confirmPass="ngModel"
+            name="confirmPass"
+            pattern="\w{4,20}"
+            required>
+      </div>
+      <div 
+      class="form-group">
+        <label>Выберите язык</label>
+        <select class="form-control"
+        [ngModel]="defaultLang"
+        name="lang"
+        >
+          <option value="en">Английский</option>
+          <option value="fr">Французский</option>
+          <option value="de">Немецкий</option>
+        </select>
+      </div>
+      <div class="radio" *ngFor="let ans of answers">
+        <label>
+          <input 
+          type="radio" 
+          [value]="ans.type"
+          [ngModel]="defaultAnswer"
+          name="answ"
+          > {{ans.text}}
+        </label>
+      </div>
+      <button class="btn btn-success" type="submit" 
+      [disabled]="!form.valid || pass.value != confirmPass.value"
+      >Сохранить</button>
+  
+    </form>
+  </div>
+
+  @if(isSubmited){
+    <div>
+        <pre>{{formData | json}}</pre>
+    </div>
+  }
